@@ -1,0 +1,26 @@
+{
+  "name": "angular-webdav",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "esanzgar/angular-webdav"
+  },
+  "author": {
+    "name": "Eduardo Sanz García",
+    "email": "eduardo@ebi.ac.uk"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "esanzgar/angular-webdav/issues"
+  },
+  "module": "angular-webdav.js",
+  "typings": "angular-webdav.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  }
+}
