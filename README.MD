@@ -24,8 +24,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-// Import your library
-import { SampleModule } from 'angular-webdav';
+import { HttpModule } from 'angular-webdav';
 
 @NgModule({
   declarations: [
@@ -33,24 +32,12 @@ import { SampleModule } from 'angular-webdav';
   ],
   imports: [
     BrowserModule,
-
-    // Specify your library as an import
-    LibraryModule
+    HttpModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-```
-
-Once your library is imported, you can use its components, directives and pipes in your Angular application:
-
-```xml
-<!-- You can now use your library component in app.component.html -->
-<h1>
-  {{title}}
-</h1>
-<sampleComponent></sampleComponent>
 ```
 
 ## Development
