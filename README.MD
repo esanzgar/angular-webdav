@@ -77,6 +77,7 @@ To generate all `*.js`, `*.d.ts` and `*.metadata.json` files:
 ```bash
 $ git clone https://github.com/esanzgar/angular-webdav.git
 $ cd angular-webdav
+$ yarn
 $ yarn build
 ```
 
