@@ -3,6 +3,7 @@ var gulp = require('gulp'),
   path = require('path'),
   ngc = require('@angular/compiler-cli/src/main').main,
   rollup = require('gulp-rollup'),
+  //uglify = require('rollup-plugin-uglify');
   rename = require('gulp-rename'),
   del = require('del'),
   runSequence = require('run-sequence'),
@@ -80,12 +81,35 @@ gulp.task('rollup:fesm', function () {
       // when subdirectories are used in the `src` directory.
       allowRealFiles: true,
 
+      onwarn: function(warning) {
+        // Skip certain warnings
+
+        // should intercept ... but doesn't in some rollup versions
+        if ( warning.code === 'THIS_IS_UNDEFINED' ) { return; }
+
+        // console.warn everything else
+        console.warn( warning.message );
+      },
+
       // A list of IDs of modules that should remain external to the bundle
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#external
       external: [
         '@angular/core',
-        '@angular/common'
+        '@angular/common',
+        'rxjs/Observable',
+        'rxjs/Observer',
+        '@angular/platform-browser'
       ],
+
+      globals: {
+        '@angular/core': 'ng.core',
+        'rxjs/Observable': 'Rx',
+        '@angular/platform-browser': 'ng.platformBrowser'
+      },
+
+      //plugins: [
+      //    uglify()
+      //],
 
       // Format of generated bundle
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#format
@@ -113,12 +137,35 @@ gulp.task('rollup:umd', function () {
       // when subdirectories are used in the `src` directory.
       allowRealFiles: true,
 
+      onwarn: function(warning) {
+        // Skip certain warnings
+
+        // should intercept ... but doesn't in some rollup versions
+        if ( warning.code === 'THIS_IS_UNDEFINED' ) { return; }
+
+        // console.warn everything else
+        console.warn( warning.message );
+      },
+
       // A list of IDs of modules that should remain external to the bundle
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#external
       external: [
         '@angular/core',
-        '@angular/common'
+        '@angular/common',
+        'rxjs/Observable',
+        'rxjs/Observer',
+        '@angular/platform-browser'
       ],
+
+      globals: {
+        '@angular/core': 'ng.core',
+        'rxjs/Observable': 'Rx',
+        '@angular/platform-browser': 'ng.platformBrowser'
+      },
+
+      //plugins: [
+      //    uglify()
+      //],
 
       // Format of generated bundle
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#format

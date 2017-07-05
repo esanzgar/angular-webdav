@@ -22,7 +22,7 @@
   "keywords": [
     "angular"
   ],
-  "license": "MIT",
+  "license": "Apache License 2.0",
   "bugs": {
     "url": "https://github.com/esanzgar/angular-webdav/issues"
   },
@@ -68,5 +68,5 @@
   },
   "main": "./dist/angular-webdav.umd.js",
   "module": "./dist/index.js",
-  "typings": "./dist/angular-webdav.metadata.json"
+  "typings": "./dist/angular-webdav.d.ts"
 }

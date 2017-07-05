@@ -43,21 +43,21 @@ function mergeOptions(
 /**
  * Performs http requests using `XMLHttpRequest` as the default backend.
  *
- * `Http` is available as an injectable class, with methods to perform http requests. Calling
+ * `WebDAV` is available as an injectable class, with methods to perform http requests. Calling
  * `request` returns an `Observable` which will emit a single {@link Response} when a
  * response is received.
  *
  * ### Example
  *
  * ```typescript
- * import {Http, HTTP_PROVIDERS} from '@angular/http';
+ * import {WebDAV, HTTP_PROVIDERS} from '@angular/http';
  * import 'rxjs/add/operator/map'
  * @Component({
  *   selector: 'http-app',
  *   viewProviders: [HTTP_PROVIDERS],
  * })
  * class PeopleComponent {
- *   constructor(http: Http) {
+ *   constructor(http: WebDAV) {
  *     http.get('people.json')
  *       // Call map on the response observable to get the parsed people object
  *       .map(res => res.json())
@@ -82,25 +82,25 @@ function mergeOptions(
  * ### Example
  *
  * ```typescript
- * import {BaseRequestOptions, Http} from '@angular/http';
+ * import {BaseRequestOptions, WebDAV} from '@angular/http';
  * import {MockBackend} from '@angular/http/testing';
  * var injector = Injector.resolveAndCreate([
  *   BaseRequestOptions,
  *   MockBackend,
- *   {provide: Http, useFactory:
+ *   {provide: WebDAV, useFactory:
  *       function(backend, defaultOptions) {
- *         return new Http(backend, defaultOptions);
+ *         return new WebDAV(backend, defaultOptions);
  *       },
  *       deps: [MockBackend, BaseRequestOptions]}
  * ]);
- * var http = injector.get(Http);
+ * var http = injector.get(WebDAV);
  * http.get('request-from-mock-backend.json').subscribe((res:Response) => doSomething(res));
  * ```
  *
  * @experimental
  */
 @Injectable()
-export class Http {
+export class WebDAV {
   constructor(protected _backend: ConnectionBackend, protected _defaultOptions: RequestOptions) {}
 
   /**
@@ -233,9 +233,10 @@ export class Http {
   /**
    * Performs a request with `proppatch` http method.
    */
-  proppatch(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.request(
-        new Request(mergeOptions(this._defaultOptions, options, RequestMethod.Proppatch, url)));
+  proppatch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+    return this.request(new Request(mergeOptions(
+        this._defaultOptions.merge(new RequestOptions({body: body})), options, RequestMethod.Proppatch,
+        url)));
   }
 
 }
@@ -245,7 +246,7 @@ export class Http {
  * @experimental
  */
 @Injectable()
-export class Jsonp extends Http {
+export class Jsonp extends WebDAV {
   constructor(backend: ConnectionBackend, defaultOptions: RequestOptions) {
     super(backend, defaultOptions);
   }
