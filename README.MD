@@ -24,7 +24,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { HttpModule } from 'angular-webdav';
+import { WebDAVModule } from 'angular-webdav';
 
 @NgModule({
   declarations: [
@@ -32,12 +32,52 @@ import { HttpModule } from 'angular-webdav';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    WebDAVModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+```
+
+```typescript
+import { Component } from '@angular/core';
+import {WebDAV, Header} from 'angular-webdav';
+
+@Component({
+  selector: 'my-app',
+  template: `<h1>Hello {{name}}</h1>`,
+})
+export class AppComponent  { name = 'Angular';
+    constructor(private webdav: WebDAV){
+        const header =  new Headers();
+        const url = 'https://your.url'
+        header.append('Authorization', 'Basic '  + btoa('username:password'));
+        //header.append('Destination', '${url}/newfile_directory');
+        //header.append('Depth', '300');
+        header.append('Content-Type', 'text/xml');
+
+        const body=`
+        <?xml version="1.0"?>
+        <d:propertyupdate xmlns:d="DAV:" xmlns:oc="http://owncloud.org/ns">
+          <d:set>
+            <d:prop>
+                        <d:lastmodified>Fri, 13 Feb 2015 00:00:00 GMT</d:lastmodified>
+            </d:prop>
+          </d:set>
+        </d:propertyupdate>
+        `
+        // webdav.get(`${url}/Photos/Paris.jpg`, {headers: header})
+        // webdav.mkcol(`${url}/newdir`, {headers: header})
+        // webdav.move(`${url}/newdir`, {headers: header})
+        // webdav.copy(`${url}/newdir`, {headers: header})
+        // webdav.delete(`${url}/newdir2`, {headers: header})
+        // webdav.propfind(`${url}/`, {headers: header})
+        // webdav.put(`${url}/test`, body, {headers: header})
+        webdav.proppatch(`${url}/test`, body, {headers: header})
+                        .subscribe();
+    }
+}
 ```
 
 ## Development
