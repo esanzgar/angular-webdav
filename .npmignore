@@ -19,3 +19,6 @@ Desktop.ini
 # Mac
 .DS_Store
 **/.DS_Store
+
+# Build files
+angular-webdav-*.tgz
