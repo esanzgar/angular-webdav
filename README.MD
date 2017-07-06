@@ -1,6 +1,7 @@
 # angular-webdav
 
-WebDAV library for Angular. The [WebDAV protocol](https://en.wikipedia.org/wiki/WebDAV) is an extension of the HTTP protocols with extra methods.
+WebDAV library for Angular (ngx).
+The [WebDAV protocol](https://en.wikipedia.org/wiki/WebDAV) is an extension of the HTTP protocols with extra methods.
 
 ## Consuming the library
 
