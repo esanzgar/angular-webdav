@@ -20,7 +20,8 @@
     "email": "eduardo@ebi.ac.uk"
   },
   "keywords": [
-    "angular"
+    "angular",
+    "WebDAV"
   ],
   "license": "Apache-2.0",
   "bugs": {
