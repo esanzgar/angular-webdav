@@ -20,3 +20,9 @@ export {Request} from './static_request';
 export {Response} from './static_response';
 export {QueryEncoder, URLSearchParams} from './url_search_params';
 export {VERSION} from './version';
+
+export {BrowserJsonp} from './backends/browser_jsonp';
+export {JSONPBackend_} from './backends/jsonp_backend';
+export {Body} from './body';
+export {_createDefaultCookieXSRFStrategy, httpFactory, jsonpFactory} from './http_module';
+export {RequestArgs} from './interfaces';

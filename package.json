@@ -27,12 +27,12 @@
     "url": "https://github.com/esanzgar/angular-webdav/issues"
   },
   "devDependencies": {
-    "@angular/common": "^4.0.0",
-    "@angular/compiler": "^4.0.0",
-    "@angular/compiler-cli": "^4.0.0",
-    "@angular/core": "^4.0.0",
-    "@angular/platform-browser": "^4.0.0",
-    "@angular/platform-browser-dynamic": "^4.0.0",
+    "@angular/common": "^4.x",
+    "@angular/compiler": "^4.x",
+    "@angular/compiler-cli": "^4.x",
+    "@angular/core": "^4.x",
+    "@angular/platform-browser": "^4.x",
+    "@angular/platform-browser-dynamic": "^4.x",
     "@compodoc/compodoc": "^1.0.0-beta.7",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
